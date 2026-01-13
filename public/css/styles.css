@@ -5,7 +5,7 @@
 }
 
 :root {
-  --primary-color: #00bcd4;
+  --primary-color: #0088a3;
   --dark-bg: #1a1a1a;
   --text-dark: #333;
   --text-light: #666;
@@ -20,7 +20,9 @@ body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
   color: var(--text-dark);
-  background-color: #f5f5f5;
+  background-image: url("/images/site/checkerboard.jpg");
+  background-size: 450px 450px;
+  background-repeat: repeat;
 }
 
 h1,
@@ -174,7 +176,7 @@ main {
 }
 
 .btn-own:hover {
-  background-color: #00a6bd;
+  background-color: #006b7d;
 }
 
 .hero-image {
@@ -275,7 +277,7 @@ main {
 
 .upgrade-name {
   font-size: 0.9rem;
-  color: #0066cc;
+  color: #0052a3;
   background-color: transparent;
   margin: 0;
   text-decoration: underline;
@@ -299,10 +301,9 @@ footer {
 
 @media screen and (min-width: 768px) {
   #wrapper {
-    max-width: 1400px;
+    max-width: 1200px;
     border-left: 20px solid transparent;
     border-right: 20px solid transparent;
-    border-image: url("/images/checkerboard.jpg") 30 round;
   }
 
   main {
