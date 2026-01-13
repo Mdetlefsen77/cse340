@@ -5,13 +5,13 @@
 }
 
 :root {
-  --primary-color: #0088a3;
+  --primary-color: #005566;
   --dark-bg: #1a1a1a;
   --text-dark: #333;
   --text-light: #666;
   --border-color: #ddd;
   --white: #fff;
-  --upgrade-bg: #0099b8;
+  --upgrade-bg: #004f6b;
 }
 
 body {
