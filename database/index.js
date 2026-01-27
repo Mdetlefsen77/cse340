@@ -34,6 +34,8 @@ if (process.env.NODE_ENV == "development") {
                 throw error
             }
         },
+        // Export the pool itself for connect-pg-simple
+        pool: pool
     }
 } else {
     pool = new Pool(poolConfig)
