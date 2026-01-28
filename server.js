@@ -15,11 +15,15 @@ const inventoryRoute = require("./routes/inventoryRoute");
 const accountRoute = require("./routes/accountRoute");
 const utilities = require("./utilities");
 const session = require("express-session");
-const pool = require('./database/');
+const bodyParser = require("body-parser");
+/* const cokieParser = require("cookie-parser");
+ */const pool = require('./database/');
 const dbPool = pool.pool || pool;
 
 app.set("view engine", "ejs");
 app.use(expressLayouts);
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.set("layout", "./layouts/layout");
 
 /* ***********************
