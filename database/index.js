@@ -1,5 +1,5 @@
-const { Pool } = require("pg")
-require("dotenv").config()
+const { Pool } = require("pg");
+require("dotenv").config();
 
 /* ***************
  * Connection Pool
@@ -7,37 +7,34 @@ require("dotenv").config()
  * But will cause problems in production environment
  * If - else will make determination which to use
  * *************** */
-let pool
-// Configuration for connecting to Render.com database
+let pool;
+
 const poolConfig = {
-    connectionString: process.env.DATABASE_URL,
-    ssl: {
-        rejectUnauthorized: false,
-    },
-    max: 10, // Maximum number of clients in the pool
-    idleTimeoutMillis: 30000, // How long a client is allowed to remain idle before being closed
-    connectionTimeoutMillis: 10000, // How long to wait when connecting a new client
-}
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
+  max: 10,
+  idleTimeoutMillis: 30000,
+  connectionTimeoutMillis: 10000,
+};
 
 if (process.env.NODE_ENV == "development") {
-    pool = new Pool(poolConfig)
+  pool = new Pool(poolConfig);
 
-    // Added for troubleshooting queries
-    // during development
-    module.exports = {
-        async query(text, params) {
-            try {
-                const res = await pool.query(text, params)
-                return res
-            } catch (error) {
-                console.error("error in query", { text })
-                throw error
-            }
-        },
-        // Export the pool itself for connect-pg-simple
-        pool: pool
-    }
+  module.exports = {
+    async query(text, params) {
+      try {
+        const res = await pool.query(text, params);
+        return res;
+      } catch (error) {
+        console.error("error in query", { text });
+        throw error;
+      }
+    },
+    pool: pool,
+  };
 } else {
-    pool = new Pool(poolConfig)
-    module.exports = pool
+  pool = new Pool(poolConfig);
+  module.exports = pool;
 }

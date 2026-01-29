@@ -10,10 +10,8 @@
       "restart": false,
       "protocol": "inspector",
       "timeout": 30000,
-      "skipFiles": [
-        "<node_internals>/**"
-      ],
+      "skipFiles": ["<node_internals>/**"],
       "program": "${workspaceFolder}/server.js"
     }
-  ],
+  ]
 }

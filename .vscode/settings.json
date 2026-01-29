@@ -1,5 +1,4 @@
 {
- 
   "sqltools.connections": [
     {
       "pgOptions": {
@@ -17,6 +16,5 @@
       "name": "render.com",
       "connectString": "postgresql://mdetlefsen:53huRioFE3K8kTmaw5U9fJxxCNKQx9em@dpg-d5go1euuk2gs739ma2d0-a.virginia-postgres.render.com/cse340_9s9i"
     }
-  ],
-  
+  ]
 }

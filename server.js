@@ -17,7 +17,7 @@ const utilities = require("./utilities");
 const session = require("express-session");
 const bodyParser = require("body-parser");
 /* const cokieParser = require("cookie-parser");
- */const pool = require('./database/');
+ */ const pool = require("./database/");
 const dbPool = pool.pool || pool;
 
 app.set("view engine", "ejs");
@@ -29,52 +29,57 @@ app.set("layout", "./layouts/layout");
 /* ***********************
  * Middleware
  * ************************/
-app.use(session({
-  store: new (require('connect-pg-simple')(session))({
-    createTableIfMissing: true,
-    pool: dbPool,
+app.use(
+  session({
+    store: new (require("connect-pg-simple")(session))({
+      createTableIfMissing: true,
+      pool: dbPool,
+    }),
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: true,
+    name: "sessionId",
   }),
-  secret: process.env.SESSION_SECRET,
-  resave: true,
-  saveUninitialized: true,
-  name: 'sessionId',
-}));
+);
 
-
-app.use(require('connect-flash')())
+app.use(require("connect-flash")());
 app.use(function (req, res, next) {
-  res.locals.messages = require('express-messages')(req, res)
-  next()
+  res.locals.messages = require("express-messages")(req, res);
+  next();
 });
 
 /* ***********************
  * Routes
  *************************/
-app.use(static)
-app.get("/", utilities.handleErrors(baseController.buildHome))
+app.use(static);
+app.get("/", utilities.handleErrors(baseController.buildHome));
 
-app.get("/trigger-error", utilities.handleErrors(baseController.triggerError))
+app.get("/trigger-error", utilities.handleErrors(baseController.triggerError));
 app.use("/inv", inventoryRoute);
 app.use("/account", accountRoute);
 
 app.use(async (req, res, next) => {
-  next({ status: 404, message: 'Sorry, we appear to have lost that page.' })
-})
+  next({ status: 404, message: "Sorry, we appear to have lost that page." });
+});
 
 /* ***********************
-* Express Error Handler
-* Place after all other middleware
-*************************/
+ * Express Error Handler
+ * Place after all other middleware
+ *************************/
 app.use(async (err, req, res, next) => {
-  let nav = await utilities.getNav()
-  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
-  if (err.status == 404) { message = err.message } else { message = 'Oh no! There was a crash. Maybe try a different route?' }
+  let nav = await utilities.getNav();
+  console.error(`Error at: "${req.originalUrl}": ${err.message}`);
+  if (err.status == 404) {
+    message = err.message;
+  } else {
+    message = "Oh no! There was a crash. Maybe try a different route?";
+  }
   res.render("errors/error", {
-    title: err.status || 'Server Error',
+    title: err.status || "Server Error",
     message,
-    nav
-  })
-})
+    nav,
+  });
+});
 
 /* ***********************
  * Local Server Information
@@ -86,7 +91,6 @@ const host = process.env.HOST;
 /* ***********************
  * Log statement to confirm server operation
  *************************/
-
 
 app.listen(port, () => {
   console.log(`app listening on ${host}:${port}`);
