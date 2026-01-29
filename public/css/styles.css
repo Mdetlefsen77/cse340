@@ -42,6 +42,39 @@ div {
   background-color: transparent;
 }
 
+input:required:invalid,
+input:focus:invalid {
+  border: 2px solid #e74c3c;
+  background-color: #fdecea;
+  color: #c0392b;
+  outline: none;
+  box-shadow: 0 0 5px 0 #e74c3c44;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23e74c3c" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 0.75em center;
+  background-size: 1.2em 1.2em;
+}
+.error-messages {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+  color: #c0392b;
+  background-color: #fdecea;
+  border: 1px solid #e74c3c;
+  border-radius: 4px;
+}
+input:required:valid {
+  border: 2px solid #27ae60;
+  background-color: #eafaf1;
+  color: #145a32;
+  outline: none;
+  box-shadow: 0 0 5px 0 #27ae6044;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%2327ae60" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.59L6.41 13l-1.41 1.41L10 18.41l8-8-1.41-1.41z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 0.75em center;
+  background-size: 1.2em 1.2em;
+}
+
 img {
   max-width: 100%;
   height: auto;
@@ -329,7 +362,9 @@ footer {
   border: 1px solid var(--border-color);
   border-radius: 8px;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 #inv-display li:hover {
