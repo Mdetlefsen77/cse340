@@ -21,7 +21,7 @@ async function registerAccount(req, res, next) {
     account_password,
   } = req.body;
 
-  const hashedPassword = await bcrypt.hash(account_password, 10);
+  const hashedPassword = bcrypt.hashSync(account_password, 10);
 
   const regResult = await accountModel.registerAccount(
     account_firstname,
