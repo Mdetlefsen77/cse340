@@ -8,22 +8,20 @@ require("dotenv").config();
  * If - else will make determination which to use
  * *************** */
 let pool;
-// Configuration for connecting to Render.com database
+
 const poolConfig = {
   connectionString: process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false,
   },
-  max: 10, // Maximum number of clients in the pool
-  idleTimeoutMillis: 30000, // How long a client is allowed to remain idle before being closed
-  connectionTimeoutMillis: 10000, // How long to wait when connecting a new client
+  max: 10,
+  idleTimeoutMillis: 30000,
+  connectionTimeoutMillis: 10000,
 };
 
 if (process.env.NODE_ENV == "development") {
   pool = new Pool(poolConfig);
 
-  // Added for troubleshooting queries
-  // during development
   module.exports = {
     async query(text, params) {
       try {
@@ -34,7 +32,6 @@ if (process.env.NODE_ENV == "development") {
         throw error;
       }
     },
-    // Export the pool itself for connect-pg-simple
     pool: pool,
   };
 } else {
