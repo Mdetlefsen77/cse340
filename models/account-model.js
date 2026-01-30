@@ -57,4 +57,19 @@ async function checkExistingEmail(account_email) {
   }
 }
 
-module.exports = { registerAccount, lognAccount, checkExistingEmail };
+async function checkExistingPassword(account_password) {
+  try {
+    const sql = "SELECT * FROM account WHERE account_password = $1";
+    const password = await pool.query(sql, [account_password]);
+    return password.rowCount;
+  } catch (error) {
+    return error.message;
+  }
+}
+
+module.exports = {
+  registerAccount,
+  lognAccount,
+  checkExistingEmail,
+  checkExistingPassword,
+};
