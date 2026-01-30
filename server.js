@@ -54,7 +54,7 @@ app.use(function (req, res, next) {
 app.use(static);
 app.get("/", utilities.handleErrors(baseController.buildHome));
 
-app.get("/trigger-error", utilities.handleErrors(baseController.triggerError));
+app.get("/error", utilities.handleErrors(baseController.triggerError));
 app.use("/inv", inventoryRoute);
 app.use("/account", accountRoute);
 

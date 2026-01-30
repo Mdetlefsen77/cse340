@@ -8,6 +8,7 @@ const {
 } = require("../controllers/accountController");
 const utilities = require("../utilities/");
 const regValidate = require("../utilities/account-validation");
+const loginValidate = require("../utilities/account-validation");
 
 router.get("/login", utilities.handleErrors(buildLogin));
 router.get("/register", utilities.handleErrors(buildRegister));
@@ -18,6 +19,11 @@ router.post(
   regValidate.checkRegData,
   utilities.handleErrors(registerAccount),
 );
-router.post("/login", utilities.handleErrors(loginAccount));
+router.post(
+  "/login",
+  loginValidate.loginRules(),
+  loginValidate.checkLoginData,
+  utilities.handleErrors(loginAccount),
+);
 
 module.exports = router;

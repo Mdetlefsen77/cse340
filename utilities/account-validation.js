@@ -8,29 +8,26 @@ const validate = {};
  * ********************************* */
 validate.registationRules = () => {
   return [
-    // firstname is required and must be string
     body("account_firstname")
       .trim()
       .escape()
       .notEmpty()
       .isLength({ min: 1 })
-      .withMessage("Please provide a first name."), // on error this message is sent.
+      .withMessage("Please provide a first name."),
 
-    // lastname is required and must be string
     body("account_lastname")
       .trim()
       .escape()
       .notEmpty()
       .isLength({ min: 2 })
-      .withMessage("Please provide a last name."), // on error this message is sent.
+      .withMessage("Please provide a last name."),
 
-    // valid email is required and cannot already exist in the DB
     body("account_email")
       .trim()
       .escape()
       .notEmpty()
       .isEmail()
-      .normalizeEmail() // refer to validator.js docs
+      .normalizeEmail()
       .withMessage("A valid email is required.")
       .custom(async (account_email) => {
         const emailExists =
@@ -39,7 +36,6 @@ validate.registationRules = () => {
           throw new Error("Email exists. Please log in or use different email");
         }
       }),
-    // password is required and must be strong password
     body("account_password")
       .trim()
       .notEmpty()
@@ -50,7 +46,16 @@ validate.registationRules = () => {
         minNumbers: 1,
         minSymbols: 1,
       })
-      .withMessage("Password does not meet requirements."),
+      .withMessage("Password does not meet requirements.")
+      .custom(async (account_password) => {
+        const passwordExist =
+          await accountModel.checkExistingPassword(account_password);
+        if (passwordExist) {
+          throw new Error(
+            "Password has been used before. Please choose a different password.",
+          );
+        }
+      }),
   ];
 };
 
@@ -70,6 +75,46 @@ validate.checkRegData = async (req, res, next) => {
       account_firstname,
       account_lastname,
       account_email,
+    });
+    return;
+  }
+  next();
+};
+
+/*  **********************************
+ *  Login Data Validation Rules
+ * ********************************* */
+validate.loginRules = () => {
+  return [
+    body("acc_email")
+      .trim()
+      .escape()
+      .notEmpty()
+      .isEmail()
+      .normalizeEmail()
+      .withMessage("Invalid credentials, please review and try again."),
+
+    body("acc_password")
+      .trim()
+      .notEmpty()
+      .withMessage("Invalid credentials, please review and try again."),
+  ];
+};
+
+/* ******************************
+ * Check data and return errors or continue to login
+ * ***************************** */
+validate.checkLoginData = async (req, res, next) => {
+  const { acc_email } = req.body;
+  let errors = [];
+  errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    const { title, nav } = await buildLoginGrid();
+    res.render("account/login", {
+      errors,
+      title,
+      nav,
+      acc_email,
     });
     return;
   }
