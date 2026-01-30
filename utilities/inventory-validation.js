@@ -3,7 +3,7 @@ const { body, validationResult } = require("express-validator");
 const invModel = require("../models/inventory-model.js");
 const validate = {};
 
-validate.cassificationRules = () => {
+validate.classificationRules = () => {
   return [
     body("classification_name")
       .isAlpha()

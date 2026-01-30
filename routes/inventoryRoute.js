@@ -38,5 +38,8 @@ router.post(
   invValidate.checkInventory,
   utilities.handleErrors(invController.addInventory),
 );
-
+router.get(
+  "/management",
+  utilities.handleErrors(invController.buildManagementView),
+);
 module.exports = router;

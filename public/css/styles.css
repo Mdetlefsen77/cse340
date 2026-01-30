@@ -525,7 +525,6 @@ footer {
   font-size: 0.95rem;
 }
 
-/* SOLUCIÓN: Altura fija y propiedades unificadas para inputs */
 .login-form input[type="email"],
 .login-form input[type="password"],
 .login-form input[type="text"] {
@@ -538,7 +537,6 @@ footer {
   background-color: var(--white);
   color: var(--text-dark);
   transition: border-color 0.3s ease;
-  /* Propiedades clave para unificar altura */
   height: 48px;
   box-sizing: border-box;
   line-height: 1.5;
@@ -666,7 +664,6 @@ footer {
   font-size: 0.95rem;
 }
 
-/* SOLUCIÓN: Altura fija y propiedades unificadas para inputs del registro */
 .register-form input[type="text"],
 .register-form input[type="email"],
 .register-form input[type="password"] {
@@ -679,7 +676,6 @@ footer {
   background-color: var(--white);
   color: var(--text-dark);
   transition: border-color 0.3s ease;
-  /* Propiedades clave para unificar altura */
   height: 48px;
   box-sizing: border-box;
   line-height: 1.5;
@@ -734,6 +730,213 @@ footer {
   background-color: #f0f0f0;
   transform: translateY(-2px);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* ================================
+   INVENTORY MANAGEMENT STYLES
+   ================================ */
+
+.inventory-main {
+  padding: 2rem 1rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.inventory-main h1 {
+  font-size: 2rem;
+  color: var(--text-dark);
+  margin-bottom: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+form.border {
+  background: linear-gradient(135deg, var(--login-bg) 0%, #0099b8 100%);
+  border: 3px solid var(--login-border);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+form.border label {
+  display: block;
+  color: var(--text-dark);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+form.border input[type="text"],
+form.border input[type="number"],
+form.border select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--white);
+  border-radius: 4px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  background-color: var(--white);
+  color: var(--text-dark);
+  transition: border-color 0.3s ease;
+  height: 48px;
+  box-sizing: border-box;
+  line-height: 1.5;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+form.border textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--white);
+  border-radius: 4px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  background-color: var(--white);
+  color: var(--text-dark);
+  transition: border-color 0.3s ease;
+  min-height: 120px;
+  box-sizing: border-box;
+  line-height: 1.5;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  resize: vertical;
+}
+
+form.border input[type="text"]:focus,
+form.border input[type="number"]:focus,
+form.border textarea:focus,
+form.border select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+form.border div {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--text-dark);
+  margin: -0.5rem 0 1rem 0;
+  line-height: 1.4;
+  background-color: transparent;
+}
+
+form.border input[type="submit"] {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: var(--white);
+  color: var(--text-dark);
+  margin-top: 0.5rem;
+}
+
+form.border input[type="submit"]:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.inventory-main .notice {
+  list-style: none;
+  padding: 1rem;
+  margin: 0 0 1.5rem 0;
+  background-color: #fdecea;
+  border: 2px solid #e74c3c;
+  border-radius: 8px;
+  color: #c0392b;
+  font-size: 0.95rem;
+  text-align: left;
+}
+
+.inventory-main .notice li {
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.inventory-main .notice li:before {
+  content: "⚠";
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+  color: #e74c3c;
+}
+
+.inventory-main .notice li:last-child {
+  margin-bottom: 0;
+}
+
+/* ================================
+   MANAGEMENT PAGE STYLES
+   ================================ */
+
+main:has(a.block) {
+  padding: 2rem 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+main:has(a.block) h1 {
+  font-size: 2rem;
+  color: var(--text-dark);
+  margin-bottom: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+a.block {
+  display: block;
+  background: linear-gradient(
+    135deg,
+    var(--upgrade-bg) 0%,
+    var(--primary-color) 100%
+  );
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  color: var(--white);
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 3px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+a.block:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.4s ease,
+    height 0.4s ease;
+}
+
+a.block:hover:before {
+  width: 300px;
+  height: 300px;
+}
+
+a.block:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+a.block:active {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* ================================
@@ -849,7 +1052,6 @@ footer {
     font-size: 2rem !important;
   }
 
-  /* Login responsive */
   .login-main {
     padding: 3rem 2rem;
   }
@@ -858,12 +1060,29 @@ footer {
     padding: 2.5rem;
   }
 
-  /* Register responsive */
   .register-main {
     padding: 3rem 2rem;
   }
 
   .register-form {
+    padding: 2.5rem;
+  }
+
+  .inventory-main {
+    padding: 3rem 2rem;
+  }
+
+  form.border {
+    padding: 2.5rem;
+  }
+
+  main:has(a.block) {
+    padding: 3rem 2rem;
+    max-width: 700px;
+  }
+
+  a.block {
+    font-size: 1.3rem;
     padding: 2.5rem;
   }
 }
@@ -918,13 +1137,24 @@ footer {
     font-size: 1.75rem;
   }
 
-  /* Login responsive */
   .login-main {
     padding: 4rem 2rem;
   }
 
-  /* Register responsive */
   .register-main {
     padding: 4rem 2rem;
+  }
+
+  .inventory-main {
+    padding: 4rem 2rem;
+  }
+
+  main:has(a.block) {
+    padding: 4rem 2rem;
+  }
+
+  a.block {
+    font-size: 1.4rem;
+    padding: 3rem;
   }
 }
