@@ -86,7 +86,7 @@ validate.checkRegData = async (req, res, next) => {
  * ********************************* */
 validate.loginRules = () => {
   return [
-    body("acc_email")
+    body("account_email")
       .trim()
       .escape()
       .notEmpty()
@@ -94,7 +94,7 @@ validate.loginRules = () => {
       .normalizeEmail()
       .withMessage("Invalid credentials, please review and try again."),
 
-    body("acc_password")
+    body("account_password")
       .trim()
       .notEmpty()
       .withMessage("Invalid credentials, please review and try again."),
@@ -105,16 +105,16 @@ validate.loginRules = () => {
  * Check data and return errors or continue to login
  * ***************************** */
 validate.checkLoginData = async (req, res, next) => {
-  const { acc_email } = req.body;
+  const { account_email } = req.body;
   let errors = [];
   errors = validationResult(req);
   if (!errors.isEmpty()) {
-    const { title, nav } = await buildLoginGrid();
+    let nav = await utilities.getNav();
     res.render("account/login", {
       errors,
-      title,
+      title: "Login",
       nav,
-      acc_email,
+      account_email,
     });
     return;
   }
