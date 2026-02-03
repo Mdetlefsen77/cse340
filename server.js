@@ -16,19 +16,24 @@ const accountRoute = require("./routes/accountRoute");
 const utilities = require("./utilities");
 const session = require("express-session");
 const bodyParser = require("body-parser");
-/* const cokieParser = require("cookie-parser");
- */ const pool = require("./database/");
-const dbPool = pool.pool || pool;
+const cookieParser = require("cookie-parser");
 
-app.set("view engine", "ejs");
-app.use(expressLayouts);
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.set("layout", "./layouts/layout");
+const pool = require("./database/");
+const dbPool = pool.pool || pool;
 
 /* ***********************
  * Middleware
  * ************************/
+
+app.set("view engine", "ejs");
+app.use(expressLayouts);
+app.set("layout", "./layouts/layout");
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+app.use(cookieParser());
+
 app.use(
   session({
     store: new (require("connect-pg-simple")(session))({
@@ -36,13 +41,21 @@ app.use(
       pool: dbPool,
     }),
     secret: process.env.SESSION_SECRET,
-    resave: true,
-    saveUninitialized: true,
+    resave: false,
+    saveUninitialized: false,
     name: "sessionId",
+    cookie: {
+      secure: process.env.NODE_ENV === "production",
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000,
+    },
   }),
 );
 
 app.use(require("connect-flash")());
+
+app.use(utilities.checkJWTToken);
+
 app.use(function (req, res, next) {
   res.locals.messages = require("express-messages")(req, res);
   next();
@@ -53,7 +66,6 @@ app.use(function (req, res, next) {
  *************************/
 app.use(static);
 app.get("/", utilities.handleErrors(baseController.buildHome));
-
 app.get("/error", utilities.handleErrors(baseController.triggerError));
 app.use("/inv", inventoryRoute);
 app.use("/account", accountRoute);
@@ -69,6 +81,7 @@ app.use(async (req, res, next) => {
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav();
   console.error(`Error at: "${req.originalUrl}": ${err.message}`);
+  let message;
   if (err.status == 404) {
     message = err.message;
   } else {
@@ -91,7 +104,6 @@ const host = process.env.HOST;
 /* ***********************
  * Log statement to confirm server operation
  *************************/
-
 app.listen(port, () => {
   console.log(`app listening on ${host}:${port}`);
 });
