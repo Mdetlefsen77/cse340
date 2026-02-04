@@ -113,6 +113,7 @@ validate.inventoryRules = () => {
   ];
 };
 validate.checkClassification = async (req, res, next) => {
+  const { classification_name } = req.body;
   let errors = [];
   errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -121,6 +122,7 @@ validate.checkClassification = async (req, res, next) => {
       errors,
       title: "Add Classification",
       nav,
+      classification_name,
     });
     return;
   }
