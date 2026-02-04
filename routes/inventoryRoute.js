@@ -4,7 +4,6 @@ const invController = require("../controllers/invController");
 const utilities = require("../utilities/");
 const invValidate = require("../utilities/inventory-validation");
 
-router.get("/type/:classificationId", invController.buildByClassificationId);
 router.get(
   "/type/:classificationId",
   utilities.handleErrors(invController.buildByClassificationId),
