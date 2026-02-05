@@ -5,13 +5,16 @@ const {
   buildRegister,
   registerAccount,
   loginAccount,
+  buildAccountManagement,
 } = require("../controllers/accountController");
 const utilities = require("../utilities/");
 const regValidate = require("../utilities/account-validation");
 const loginValidate = require("../utilities/account-validation");
+
 router.get("/", utilities.checkLogin);
 router.get("/login", utilities.handleErrors(buildLogin));
 router.get("/register", utilities.handleErrors(buildRegister));
+router.get("/management", utilities.handleErrors(buildAccountManagement));
 
 router.post(
   "/register",

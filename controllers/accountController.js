@@ -81,7 +81,7 @@ async function loginAccount(req, res) {
           maxAge: 3600 * 1000,
         });
       }
-      return res.redirect("/account/");
+      return res.redirect("/account/management");
     } else {
       req.flash(
         "message notice",
@@ -99,4 +99,19 @@ async function loginAccount(req, res) {
   }
 }
 
-module.exports = { buildLogin, buildRegister, registerAccount, loginAccount };
+async function buildAccountManagement(req, res, next) {
+  let nav = await utilities.getNav();
+  res.render("account/management", {
+    title: "Account Management",
+    nav,
+    errors: null,
+  });
+}
+
+module.exports = {
+  buildLogin,
+  buildRegister,
+  registerAccount,
+  loginAccount,
+  buildAccountManagement,
+};
