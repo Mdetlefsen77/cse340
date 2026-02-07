@@ -1,0 +1,65 @@
+<%# Content Heading %>
+    <% if (title) { %>
+        <h1 id="login-header">
+            <%= title %>
+        </h1>
+        <% } else { res.redirect('/') } %>
+
+            <%- messages() %>
+
+                <% if (errors) { %>
+                    <ul class="error-message">
+                        <% errors.array().forEach(error=> { %>
+                            <li>
+                                <%= error.msg %>
+                            </li>
+                            <% }) %>
+                    </ul>
+                    <% } %>
+
+                        <script src="../../public/js/inv-update.js"></script>
+
+                        <form action="/inv/edit/" method="post" class="add-inventory" id="update-form">
+                            <p class="required">(Fields marked with a * are required)</p>
+                            <label for="inv_make">Make<span class="required-asterisk">*</span>:</label>
+                            <input type="text" id="inv_make" name="inv_make" required value="<%= locals.inv_make %>">
+
+                            <label for="inv_model">Model<span class="required-asterisk">*</span>:</label>
+                            <input type="text" id="inv_model" name="inv_model" required value="<%= locals.inv_model %>">
+
+                            <label for="inv_year">Year<span class="required-asterisk">*</span>:</label>
+                            <input type="text" id="inv_year" name="inv_year" required value="<%= locals.inv_year %>"
+                                pattern="^[0-9]{4}$">
+
+                            <label for="inv_description">Description<span class="required-asterisk">*</span>:</label>
+                            <input type="text" id="inv_description" name="inv_description" required
+                                value="<%= locals.inv_description %>">
+
+                            <label for="inv_price">Price<span class="required-asterisk">*</span>:</label>
+                            <p class="required">(Do not include $ or commas)</p>
+                            <input type="text" id="inv_price" name="inv_price" required value="<%= locals.inv_price %>"
+                                pattern="^\d{1,9}$">
+
+                            <label for="inv_miles">Miles<span class="required-asterisk">*</span>:</label>
+                            <p class="required">(Do not include commas)</p>
+                            <input type="text" id="inv_miles" name="inv_miles" required value="<%= locals.inv_miles %>"
+                                pattern="^[0-9]+$">
+
+                            <label for="inv_color">Color<span class="required-asterisk">*</span>:</label>
+                            <input type="text" id="inv_color" name="inv_color" required value="<%= locals.inv_color %>">
+
+                            <label for="classification_id">Classification Type<span class="required-asterisk">*</span>:
+                                <%- classificationList %>
+                            </label>
+
+                            <input type="submit" value="Edit Vehicle" id="login-button">
+
+                            <input type="hidden" name="inv_id" <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+                                <% } %>>
+                                    <input type="hidden" name="inv_image" <% if(locals.inv_image) { %> value="<%=
+                                        locals.inv_image %>"
+                                        <% } %>>
+                                            <input type="hidden" name="inv_thumbnail" <% if(locals.inv_thumbnail) { %>
+                                            value="<%= locals.inv_thumbnail %>"
+                                                <% } %>>
+                        </form>
