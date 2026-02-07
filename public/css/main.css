@@ -1,0 +1,62 @@
+/* ===========================================================
+   MAIN.CSS - Archivo Principal de Estilos
+   
+   Este archivo importa todos los módulos CSS del sitio.
+   Orden de carga:
+   1. Base (variables, reset, layout)
+   2. Components (botones, formularios, tablas)
+   3. Pages (estilos específicos de páginas)
+   4. Responsive (media queries)
+   
+   Estructura Modular - Nivel 2:
+   - Mantenibilidad: Cada módulo tiene una responsabilidad clara
+   - Escalabilidad: Fácil agregar nuevos componentes o páginas
+   - Legibilidad: Los desarrolladores pueden navegar rápidamente
+   - Performance: El navegador puede cachear módulos individualmente
+   
+   Autor: CSE Motors Development Team
+   Última actualización: Febrero 2026
+   =========================================================== */
+
+/* Fundamentos: Variables CSS, Reset, Tipografía, Layout Base */
+@import url("base.css");
+
+/* Componentes: Botones, Formularios, Tarjetas, Tablas, Mensajes */
+@import url("components.css");
+
+/* Páginas: Estilos específicos por página */
+@import url("pages.css");
+
+/* Responsive: Media Queries para Tablet y Desktop */
+@import url("responsive.css");
+
+/* ===========================================================
+   NOTAS PARA DESARROLLADORES:
+   
+   - Para agregar nuevos estilos, identifica la categoría correcta
+   - Variables globales van en base.css (:root)
+   - Componentes reutilizables van en components.css
+   - Estilos específicos de página van en pages.css
+   - Ajustes responsivos van en responsive.css
+   
+   ESTRUCTURA RECOMENDADA PARA EXPANSIÓN FUTURA:
+   Si el proyecto crece, considera subdividir en:
+   
+   base/
+   ├── variables.css
+   ├── reset.css
+   └── typography.css
+   
+   components/
+   ├── buttons.css
+   ├── forms.css
+   ├── cards.css
+   └── tables.css
+   
+   pages/
+   ├── home.css
+   ├── inventory.css
+   ├── account.css
+   └── vehicle-detail.css
+   
+   =========================================================== */

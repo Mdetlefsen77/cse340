@@ -18,6 +18,35 @@ router.get(
   "/add-classification",
   utilities.handleErrors(invController.classificationForm),
 );
+router.get(
+  "/getInventory/:classification_id",
+  utilities.handleErrors(invController.getInventoryJSON),
+);
+router.get(
+  "/add-inventory",
+  utilities.handleErrors(invController.inventoryForm),
+);
+
+router.get(
+  "/delete/:inv_id",
+  utilities.checkLogin,
+  utilities.checkAccountType,
+  utilities.handleErrors(invController.buildDeleteInvView),
+);
+
+router.get(
+  "/management",
+  utilities.checkLogin,
+  utilities.checkAccountType,
+  utilities.handleErrors(invController.buildManagementView),
+);
+
+router.get(
+  "/edit/:inv_id",
+  utilities.checkLogin,
+  utilities.checkAccountType,
+  utilities.handleErrors(invController.buildEditInvView),
+);
 
 router.post(
   "/add-classification",
@@ -26,19 +55,19 @@ router.post(
   utilities.handleErrors(invController.addClassification),
 );
 
-router.get(
-  "/add-inventory",
-  utilities.handleErrors(invController.inventoryForm),
-);
-
 router.post(
   "/add-inventory",
   invValidate.inventoryRules(),
   invValidate.checkInventory,
   utilities.handleErrors(invController.addInventory),
 );
-router.get(
-  "/management",
-  utilities.handleErrors(invController.buildManagementView),
+
+router.post(
+  "/edit/",
+  invValidate.inventoryRules(),
+  invValidate.checkEditData,
+  utilities.handleErrors(invController.editInventory),
 );
+
+router.post("/delete/", utilities.handleErrors(invController.deleteInventory));
 module.exports = router;

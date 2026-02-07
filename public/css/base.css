@@ -1,0 +1,247 @@
+/* ===========================================================
+   BASE.CSS - Fundamentos del Sitio
+   Contiene: Variables, Reset, Tipografía, Layout Base
+   =========================================================== */
+
+/* ================================
+   RESET Y BOX-SIZING
+   ================================ */
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+/* ================================
+   VARIABLES CSS
+   ================================ */
+:root {
+  /* Colores Principales */
+  --primary-color: #005566;
+  --primary-dark: #006b7d;
+  --primary-light: #00a8cc;
+
+  /* Colores de Fondo */
+  --dark-bg: #1a1a1a;
+  --white: #fff;
+  --upgrade-bg: #004f6b;
+  --login-bg: #00a8cc;
+  --login-border: #0099b8;
+
+  /* Colores de Texto */
+  --text-dark: #333;
+  --text-light: #666;
+
+  /* Colores de Estado */
+  --success-color: #27ae60;
+  --success-bg: #eafaf1;
+  --error-color: #e74c3c;
+  --error-bg: #fdecea;
+  --error-text: #c0392b;
+
+  /* Bordes y Separadores */
+  --border-color: #ddd;
+
+  /* Espaciado (opcional para expansión futura) */
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+
+  /* Sombras */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* ================================
+   ESTILOS BASE DEL BODY
+   ================================ */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--text-dark);
+  background-image: url("/images/site/checkerboard.jpg");
+  background-size: 450px 450px;
+  background-repeat: repeat;
+}
+
+/* ================================
+   TIPOGRAFÍA BASE
+   ================================ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+li,
+a,
+span,
+div {
+  color: inherit;
+  background-color: transparent;
+}
+
+h1,
+h2 {
+  margin: 0;
+  line-height: 1.2;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ================================
+   ESTADOS DE INPUT (VALIDACIÓN)
+   ================================ */
+input:required:invalid,
+input:focus:invalid {
+  border: 2px solid var(--error-color);
+  background-color: var(--error-bg);
+  color: var(--error-text);
+  outline: none;
+  box-shadow: 0 0 5px 0 #e74c3c44;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23e74c3c" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 0.75em center;
+  background-size: 1.2em 1.2em;
+}
+
+input:required:valid {
+  border: 2px solid var(--success-color);
+  background-color: var(--success-bg);
+  color: #145a32;
+  outline: none;
+  box-shadow: 0 0 5px 0 #27ae6044;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%2327ae60" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.59L6.41 13l-1.41 1.41L10 18.41l8-8-1.41-1.41z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 0.75em center;
+  background-size: 1.2em 1.2em;
+}
+
+/* ================================
+   LAYOUT BASE
+   ================================ */
+#wrapper {
+  max-width: 100%;
+  margin: 0 auto;
+  background-color: var(--white);
+}
+
+#top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--white);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.siteName a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--text-dark);
+  background-color: transparent;
+}
+
+#tools a {
+  color: var(--text-dark);
+  background-color: transparent;
+  font-size: 0.9rem;
+  margin-left: 1rem;
+}
+
+#tools a:hover {
+  color: var(--primary-color);
+  background-color: transparent;
+}
+
+/* ================================
+   NAVEGACIÓN
+   ================================ */
+nav {
+  background-color: var(--dark-bg);
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.75rem 0;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+nav ul li {
+  color: var(--white);
+  background-color: transparent;
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+nav ul li:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ================================
+   MAIN CONTENT
+   ================================ */
+main {
+  padding: 1rem;
+}
+
+/* ================================
+   FOOTER
+   ================================ */
+footer {
+  background-color: var(--dark-bg);
+  color: var(--white);
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+.copyright {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.copyright a {
+  color: var(--white);
+  text-decoration: underline;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.copyright a:hover {
+  opacity: 1;
+}
+
+/* ================================
+   UTILIDADES GENERALES
+   ================================ */
+.notice {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.1rem;
+  color: var(--text-light);
+}

@@ -1,0 +1,319 @@
+/* ===========================================================
+   RESPONSIVE.CSS - Media Queries para Diseño Adaptativo
+   Contiene: Tablet (768px+) y Desktop (1024px+)
+   =========================================================== */
+
+/* ================================
+   TABLET - 768px+
+   ================================ */
+@media screen and (min-width: 768px) {
+  /* Layout Base */
+  #wrapper {
+    max-width: 1200px;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+  }
+
+  main {
+    padding: 2rem;
+  }
+
+  /* Navegación */
+  nav ul li {
+    font-size: 1rem;
+  }
+
+  /* Hero Section */
+  .hero-content h1 {
+    font-size: 2.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero-showcase {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hero-text {
+    flex: 1;
+    order: 1;
+  }
+
+  .hero-image {
+    flex: 1;
+    order: 2;
+  }
+
+  /* Content Sections */
+  .content-wrapper {
+    flex-direction: row;
+    gap: 3rem;
+  }
+
+  .reviews-section {
+    flex: 1;
+    order: 2;
+  }
+
+  .upgrades-section {
+    flex: 1;
+    order: 1;
+  }
+
+  .upgrades-grid {
+    gap: 1.5rem;
+  }
+
+  .upgrade-image {
+    padding: 2rem;
+    min-height: 150px;
+  }
+
+  /* Inventory Display */
+  #inv-display {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  #inv-display li img {
+    height: 220px;
+  }
+
+  #inv-display .namePrice {
+    padding: 1.25rem;
+  }
+
+  #inv-display .namePrice h2 {
+    font-size: 1.2rem;
+  }
+
+  /* Vehicle Detail */
+  .vehicle-detail {
+    flex-direction: row;
+    gap: 3rem;
+  }
+
+  .vehicle-detail__image {
+    flex: 1;
+    max-width: 50%;
+  }
+
+  .vehicle-detail__image img {
+    height: 100%;
+    max-height: 500px;
+    object-fit: contain;
+  }
+
+  .vehicle-detail__info {
+    flex: 1;
+    padding: 2rem;
+  }
+
+  .vehicle-detail__info h2 {
+    font-size: 2.25rem;
+  }
+
+  .vehicle-detail__info h3 {
+    font-size: 1.65rem;
+  }
+
+  .vehicle-detail__price {
+    font-size: 2rem !important;
+  }
+
+  /* Login/Register Pages */
+  .login-main {
+    padding: 3rem 2rem;
+  }
+
+  .login-form {
+    padding: 2.5rem;
+  }
+
+  .register-main {
+    padding: 3rem 2rem;
+  }
+
+  .register-form {
+    padding: 2.5rem;
+  }
+
+  /* Inventory Management */
+  .inventory-main {
+    padding: 3rem 2rem;
+  }
+
+  form.border {
+    padding: 2.5rem;
+  }
+
+  main:has(a.block) {
+    padding: 3rem 2rem;
+    max-width: 700px;
+  }
+
+  a.block {
+    font-size: 1.3rem;
+    padding: 2.5rem;
+  }
+
+  /* Inventory Table */
+  #inventoryDisplay thead th,
+  #inventoryDisplay thead td {
+    padding: 1.25rem;
+    font-size: 1.05rem;
+  }
+
+  #inventoryDisplay tbody td {
+    padding: 1rem 1.25rem;
+  }
+
+  /* Forms */
+  form.add-inventory {
+    padding: 2.5rem;
+  }
+
+  form.registration {
+    padding: 2.5rem;
+  }
+
+  /* Account Management */
+  .login-page {
+    padding: 2.5rem;
+  }
+
+  .management {
+    padding: 0 2rem;
+  }
+
+  .management a {
+    font-size: 1.3rem;
+    padding: 2.5rem;
+  }
+
+  #account-welcome {
+    font-size: 2.25rem;
+  }
+}
+
+/* ================================
+   DESKTOP - 1024px+
+   ================================ */
+@media screen and (min-width: 1024px) {
+  /* Header */
+  #top-header {
+    padding: 1.5rem 2rem;
+  }
+
+  .siteName a {
+    font-size: 2rem;
+  }
+
+  /* Main */
+  main {
+    padding: 3rem;
+  }
+
+  /* Hero Section */
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-title {
+    font-size: 1.75rem;
+  }
+
+  /* Inventory Display */
+  #inv-display {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2.5rem;
+  }
+
+  #inv-display li img {
+    height: 240px;
+  }
+
+  /* Vehicle Detail */
+  .vehicle-detail {
+    gap: 4rem;
+    margin: 3rem 0;
+  }
+
+  .vehicle-detail__info {
+    padding: 2.5rem;
+  }
+
+  .vehicle-detail__info h2 {
+    font-size: 2.5rem;
+  }
+
+  .vehicle-detail__info h3 {
+    font-size: 1.75rem;
+  }
+
+  /* Login/Register Pages */
+  .login-main {
+    padding: 4rem 2rem;
+  }
+
+  .register-main {
+    padding: 4rem 2rem;
+  }
+
+  /* Inventory Management */
+  .inventory-main {
+    padding: 4rem 2rem;
+  }
+
+  main:has(a.block) {
+    padding: 4rem 2rem;
+  }
+
+  a.block {
+    font-size: 1.4rem;
+    padding: 3rem;
+  }
+
+  /* Inventory Table */
+  #inventoryDisplay thead th,
+  #inventoryDisplay thead td {
+    padding: 1.5rem;
+    font-size: 1.1rem;
+  }
+
+  #inventoryDisplay tbody td {
+    padding: 1.25rem 1.5rem;
+  }
+
+  /* Forms */
+  form.add-inventory {
+    padding: 3rem;
+  }
+
+  form.registration {
+    padding: 3rem;
+  }
+
+  /* Account Management */
+  .login-page {
+    padding: 3rem;
+  }
+
+  .inventory-management {
+    padding: 2.5rem;
+  }
+
+  .management {
+    padding: 0 2rem;
+  }
+
+  .management a {
+    font-size: 1.4rem;
+    padding: 3rem;
+  }
+
+  #account-welcome {
+    font-size: 2.5rem;
+  }
+}
