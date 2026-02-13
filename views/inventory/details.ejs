@@ -1,4 +1,18 @@
 <div class="content">
-  <h1><%= title %></h1>
+  <h1>
+    <%= title %>
+  </h1>
   <%- detail %>
+
+    <% if (locals.loggedin) { %>
+      <div class="testdrive-action">
+        <a href="/testdrive/request/<%= inv_id %>" class="testdrive-btn">Request Test Drive</a>
+      </div>
+      <% } else { %>
+        <div class="testdrive-action">
+          <p class="login-prompt">
+            <a href="/account/login">Log in</a> to request a test drive
+          </p>
+        </div>
+        <% } %>
 </div>

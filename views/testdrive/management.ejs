@@ -1,0 +1,84 @@
+<main class="testdrive-management-main">
+    <h1>
+        <%= title %>
+    </h1>
+
+    <div class="testdrive-management-container">
+        <%- messages() %>
+
+            <% if (requests && requests.length> 0) { %>
+                <div class="management-requests-list">
+                    <table class="requests-table">
+                        <thead>
+                            <tr>
+                                <th>Request Date</th>
+                                <th>Customer</th>
+                                <th>Vehicle</th>
+                                <th>Preferred Date/Time</th>
+                                <th>Phone</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% requests.forEach(request=> { %>
+                                <tr class="request-row status-<%= request.status.toLowerCase() %>">
+                                    <td>
+                                        <%= new Date(request.request_date).toLocaleDateString() %>
+                                    </td>
+                                    <td>
+                                        <%= request.account_firstname %>
+                                            <%= request.account_lastname %><br>
+                                                <small>
+                                                    <%= request.account_email %>
+                                                </small>
+                                    </td>
+                                    <td>
+                                        <%= request.inv_year %>
+                                            <%= request.inv_make %>
+                                                <%= request.inv_model %>
+                                    </td>
+                                    <td>
+                                        <%= new Date(request.preferred_date).toLocaleDateString() %><br>
+                                            <%= request.preferred_time %>
+                                    </td>
+                                    <td>
+                                        <%= request.phone_number %>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge status-<%= request.status.toLowerCase() %>">
+                                            <%= request.status %>
+                                        </span>
+                                    </td>
+                                    <td class="actions">
+                                        <form action="/testdrive/update-status" method="POST" class="status-form">
+                                            <input type="hidden" name="request_id" value="<%= request.request_id %>">
+                                            <select name="status" onchange="this.form.submit()">
+                                                <option value="Pending" <%=request.status==='Pending' ? 'selected' : ''
+                                                    %>>Pending</option>
+                                                <option value="Confirmed" <%=request.status==='Confirmed' ? 'selected'
+                                                    : '' %>>Confirmed</option>
+                                                <option value="Completed" <%=request.status==='Completed' ? 'selected'
+                                                    : '' %>>Completed</option>
+                                                <option value="Cancelled" <%=request.status==='Cancelled' ? 'selected'
+                                                    : '' %>>Cancelled</option>
+                                            </select>
+                                        </form>
+                                        <% if (request.additional_notes) { %>
+                                            <span class="notes-preview" title="<%= request.additional_notes %>">
+                                                Notes available
+                                            </span>
+                                            <% } %>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+                <% } else { %>
+                    <div class="no-requests">
+                        <p>No test drive requests have been submitted yet.</p>
+                    </div>
+                    <% } %>
+    </div>
+</main>
