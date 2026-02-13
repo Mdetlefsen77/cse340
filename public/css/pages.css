@@ -435,7 +435,6 @@ main:has(a.block) h1 {
    TEST DRIVE PAGES
    ================================ */
 
-/* Test Drive Request Form */
 .testdrive-main,
 .my-requests-main,
 .testdrive-management-main {
@@ -545,7 +544,6 @@ main:has(a.block) h1 {
   background-color: #5a6268;
 }
 
-/* Test Drive Action Button on Details Page */
 .testdrive-action {
   margin-top: 2rem;
   padding: 1.5rem;
@@ -580,7 +578,6 @@ main:has(a.block) h1 {
   font-weight: bold;
 }
 
-/* My Test Drive Requests */
 .requests-list {
   display: flex;
   flex-direction: column;
@@ -683,7 +680,6 @@ main:has(a.block) h1 {
   background-color: #1a4d7a;
 }
 
-/* Test Drive Management (Employees/Admins) */
 .requests-table {
   width: 100%;
   border-collapse: collapse;

@@ -1,8 +1,5 @@
 const pool = require("../database/");
 
-/* *****************************
- * Create a new test drive request
- * ***************************** */
 async function createTestDriveRequest(
   inv_id,
   account_id,
@@ -28,9 +25,6 @@ async function createTestDriveRequest(
   }
 }
 
-/* *****************************
- * Get all test drive requests (for employees/admins)
- * ***************************** */
 async function getAllTestDriveRequests() {
   try {
     const sql = `
@@ -61,9 +55,6 @@ async function getAllTestDriveRequests() {
   }
 }
 
-/* *****************************
- * Get test drive requests by account_id
- * ***************************** */
 async function getTestDriveRequestsByAccountId(account_id) {
   try {
     const sql = `
@@ -96,9 +87,6 @@ async function getTestDriveRequestsByAccountId(account_id) {
   }
 }
 
-/* *****************************
- * Update test drive request status
- * ***************************** */
 async function updateTestDriveStatus(request_id, status) {
   try {
     const sql =
@@ -111,9 +99,6 @@ async function updateTestDriveStatus(request_id, status) {
   }
 }
 
-/* *****************************
- * Get test drive request by ID
- * ***************************** */
 async function getTestDriveRequestById(request_id) {
   try {
     const sql = `

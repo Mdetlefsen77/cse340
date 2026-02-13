@@ -4,9 +4,6 @@ const invModel = require("../models/inventory-model");
 
 const testdriveCont = {};
 
-/* ****************************************
- *  Build test drive request form
- * *************************************** */
 testdriveCont.buildRequestForm = async function (req, res, next) {
   const inv_id = req.params.inv_id;
   const vehicleData = await invModel.getInventoryById(inv_id);
@@ -26,9 +23,6 @@ testdriveCont.buildRequestForm = async function (req, res, next) {
   });
 };
 
-/* ****************************************
- *  Process test drive request
- * *************************************** */
 testdriveCont.createRequest = async function (req, res, next) {
   const {
     inv_id,
@@ -72,9 +66,6 @@ testdriveCont.createRequest = async function (req, res, next) {
   }
 };
 
-/* ****************************************
- *  Build management view for employees/admins
- * *************************************** */
 testdriveCont.buildManagementView = async function (req, res, next) {
   const nav = await utilities.getNav();
   const requests = await testdriveModel.getAllTestDriveRequests();
@@ -87,9 +78,6 @@ testdriveCont.buildManagementView = async function (req, res, next) {
   });
 };
 
-/* ****************************************
- *  Build user's test drive requests view
- * *************************************** */
 testdriveCont.buildMyRequests = async function (req, res, next) {
   const account_id = res.locals.accountData.account_id;
   const nav = await utilities.getNav();
@@ -104,9 +92,6 @@ testdriveCont.buildMyRequests = async function (req, res, next) {
   });
 };
 
-/* ****************************************
- *  Update test drive request status
- * *************************************** */
 testdriveCont.updateStatus = async function (req, res, next) {
   const { request_id, status } = req.body;
 

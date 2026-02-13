@@ -2,9 +2,6 @@ const utilities = require(".");
 const { body, validationResult } = require("express-validator");
 const validate = {};
 
-/*  **********************************
- *  Test Drive Request Validation Rules
- * ********************************* */
 validate.testDriveRules = () => {
   return [
     body("inv_id")
@@ -53,9 +50,6 @@ validate.testDriveRules = () => {
   ];
 };
 
-/* ******************************
- * Check test drive data and return errors or continue
- * ***************************** */
 validate.checkTestDriveData = async (req, res, next) => {
   const {
     inv_id,
