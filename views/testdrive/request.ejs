@@ -1,0 +1,58 @@
+<main class="testdrive-main">
+    <h1>
+        <%= title %>
+    </h1>
+
+    <div class="testdrive-container">
+        <%- messages() %>
+
+            <% if (errors) { %>
+                <ul class="error-messages">
+                    <% errors.array().forEach(error=> { %>
+                        <li>
+                            <%= error.msg %>
+                        </li>
+                        <% }) %>
+                </ul>
+                <% } %>
+
+                    <div class="vehicle-info">
+                        <h2>
+                            <%= vehicleData.inv_year %>
+                                <%= vehicleData.inv_make %>
+                                    <%= vehicleData.inv_model %>
+                        </h2>
+                        <img src="<%= vehicleData.inv_thumbnail %>"
+                            alt="<%= vehicleData.inv_make %> <%= vehicleData.inv_model %>">
+                        <p class="price">Price: $<%= new Intl.NumberFormat('en-US').format(vehicleData.inv_price) %>
+                        </p>
+                    </div>
+
+                    <p class="required-fields"><em>*ALL FIELDS ARE REQUIRED.</em></p>
+
+                    <form class="testdrive-form border" action="/testdrive/request" method="POST">
+                        <input type="hidden" name="inv_id" value="<%= inv_id %>">
+
+                        <label for="preferred_date">Preferred Date:</label>
+                        <input type="date" id="preferred_date" name="preferred_date"
+                            value="<%= locals.preferred_date || '' %>"
+                            min="<%= new Date().toISOString().split('T')[0] %>" required>
+
+                        <label for="preferred_time">Preferred Time:</label>
+                        <input type="time" id="preferred_time" name="preferred_time"
+                            value="<%= locals.preferred_time || '' %>" min="09:00" max="18:00" required>
+                        <p class="field-hint">Business hours: 9:00 AM - 6:00 PM</p>
+
+                        <label for="phone_number">Phone Number:</label>
+                        <input type="tel" id="phone_number" name="phone_number" value="<%= locals.phone_number || '' %>"
+                            placeholder="(123) 456-7890" pattern="[\d\s\-\(\)\+]+" required>
+
+                        <label for="additional_notes">Additional Notes (Optional):</label>
+                        <textarea id="additional_notes" name="additional_notes" rows="4" maxlength="500"
+                            placeholder="Any special requirements or questions?"><%= locals.additional_notes || '' %></textarea>
+
+                        <button type="submit">Submit Request</button>
+                        <a href="/inv/detail/<%= inv_id %>" class="cancel-link">Cancel</a>
+                    </form>
+    </div>
+</main>

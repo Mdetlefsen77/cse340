@@ -1,4 +1,3 @@
-// Client-side validation for add inventory form
 const addInventoryForm = document.querySelector("#addInventoryForm");
 
 if (addInventoryForm) {

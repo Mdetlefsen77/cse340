@@ -38,6 +38,7 @@ invCont.buildByInventoryId = async function (req, res, next) {
     title: `${data.inv_make} ${data.inv_model}`,
     nav,
     detail,
+    inv_id: invId,
   });
 };
 

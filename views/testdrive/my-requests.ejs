@@ -1,0 +1,59 @@
+<main class="my-requests-main">
+    <h1>
+        <%= title %>
+    </h1>
+
+    <div class="my-requests-container">
+        <%- messages() %>
+
+            <% if (requests && requests.length> 0) { %>
+                <div class="requests-list">
+                    <% requests.forEach(request=> { %>
+                        <div class="request-card">
+                            <div class="request-vehicle-info">
+                                <img src="<%= request.inv_thumbnail %>"
+                                    alt="<%= request.inv_make %> <%= request.inv_model %>">
+                                <div class="vehicle-details">
+                                    <h3>
+                                        <%= request.inv_year %>
+                                            <%= request.inv_make %>
+                                                <%= request.inv_model %>
+                                    </h3>
+                                    <a href="/inv/detail/<%= request.inv_id %>">View Vehicle Details</a>
+                                </div>
+                            </div>
+
+                            <div class="request-details">
+                                <p><strong>Request Date:</strong>
+                                    <%= new Date(request.request_date).toLocaleDateString() %>
+                                </p>
+                                <p><strong>Preferred Date:</strong>
+                                    <%= new Date(request.preferred_date).toLocaleDateString() %>
+                                </p>
+                                <p><strong>Preferred Time:</strong>
+                                    <%= request.preferred_time %>
+                                </p>
+                                <p><strong>Phone:</strong>
+                                    <%= request.phone_number %>
+                                </p>
+                                <% if (request.additional_notes) { %>
+                                    <p><strong>Notes:</strong>
+                                        <%= request.additional_notes %>
+                                    </p>
+                                    <% } %>
+                                        <p class="status status-<%= request.status.toLowerCase() %>">
+                                            <strong>Status:</strong>
+                                            <%= request.status %>
+                                        </p>
+                            </div>
+                        </div>
+                        <% }) %>
+                </div>
+                <% } else { %>
+                    <div class="no-requests">
+                        <p>You haven't requested any test drives yet.</p>
+                        <a href="/" class="browse-link">Browse Our Inventory</a>
+                    </div>
+                    <% } %>
+    </div>
+</main>

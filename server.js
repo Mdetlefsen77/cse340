@@ -13,6 +13,7 @@ const static = require("./routes/static");
 const baseController = require("./controllers/baseController");
 const inventoryRoute = require("./routes/inventoryRoute");
 const accountRoute = require("./routes/accountRoute");
+const testdriveRoute = require("./routes/testdriveRoute");
 const utilities = require("./utilities");
 const session = require("express-session");
 const bodyParser = require("body-parser");
@@ -69,6 +70,7 @@ app.get("/", utilities.handleErrors(baseController.buildHome));
 app.get("/error", utilities.handleErrors(baseController.triggerError));
 app.use("/inv", inventoryRoute);
 app.use("/account", accountRoute);
+app.use("/testdrive", testdriveRoute);
 
 app.use(async (req, res, next) => {
   next({ status: 404, message: "Sorry, we appear to have lost that page." });
